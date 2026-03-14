@@ -41,6 +41,7 @@ class World:
             print("1. Dodaj samochód")
             print("2. Lista samochodów")
             print("3. Przyspiesz samochód")
+            print("4. Zahamuj samochód")
             choice = int(input("Wybierz opcję: "))
             if choice == 1:
                 car_name = input("Podaj markę samochodu: ")
@@ -51,10 +52,13 @@ class World:
                     print("Brak samochodów w świecie!")
                 else:
                     for i, car in enumerate(self.cars):
-                        print(f"{i}. {car.name}")
+                        print(f"{i}. {car.name} prędkość: {car.speed}km/h")
             elif choice == 3:
-                car_number = int(input("Który samochód przyspieszyć (numer): "))
+                car_number = int(input(f"Który samochód przyspieszyć (0-{len(self.cars)-1}): "))
                 self.cars[car_number].accelerate()
+            elif choice == 4:
+                car_number = int(input("Który samochód przyhamować (numer): "))
+                self.cars[car_number].brake()
 
 
 
