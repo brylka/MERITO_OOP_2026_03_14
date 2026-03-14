@@ -36,6 +36,9 @@ class World:
     def __init__(self):
         self.cars = []
         print("Świat został stworzony!")
+    def cars_list(self):
+        for i, car in enumerate(self.cars):
+            print(f"{i}. {car.name} prędkość: {car.speed}km/h")
     def run(self):
         while True:
             print("1. Dodaj samochód")
@@ -51,13 +54,14 @@ class World:
                 if not self.cars:
                     print("Brak samochodów w świecie!")
                 else:
-                    for i, car in enumerate(self.cars):
-                        print(f"{i}. {car.name} prędkość: {car.speed}km/h")
+                    self.cars_list()
             elif choice == 3:
+                self.cars_list()
                 car_number = int(input(f"Który samochód przyspieszyć (0-{len(self.cars)-1}): "))
                 self.cars[car_number].accelerate()
             elif choice == 4:
-                car_number = int(input("Który samochód przyhamować (numer): "))
+                self.cars_list()
+                car_number = int(input(f"Który samochód przyhamować (0-{len(self.cars)-1}): "))
                 self.cars[car_number].brake()
 
 
