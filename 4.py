@@ -30,56 +30,23 @@ class Car:
     def honk(self):
         print(f"Samochód {self.name} trąbi")
 
-bmw = Car("BMW")
-audi = Car("Audi")
-bmw.accelerate()
-bmw.status()
-audi.status()
-bmw.crash(audi)
-bmw.accelerate()
-bmw.status()
-audi.accelerate()
-audi.status()
+
+class World:
+    def __init__(self):
+        self.cars = []
+        print("Świat został stworzony!")
+    def run(self):
+        while True:
+            print("1. Dodaj samochód")
+            print("2. Lista samochodów")
+            choice = int(input("Wybierz opcję: "))
+            if choice == 1:
+                car_name = input("Podaj markę samochodu: ")
+                car = Car(car_name)
+                self.cars.append(car)
+            elif choice == 2:
+                print(self.cars)
 
 
 
-# bmw.speed = -100
-# bmw.status()
-# bmw.accelerate()
-# bmw.status()
-# bmw.brake()
-# bmw.status()
-# bmw.brake()
-# bmw.status()
-# bmw.accelerate()
-# bmw.status()
-
-
-
-# bmw.speed = 200
-# bmw.honk()
-# for _ in range(20):
-#     bmw.accelerate()
-#     bmw.status()
-
-
-
-# bmw.status()
-#
-
-# fiat = Car("Fiat")
-# audi = Car("Audi")
-# audi.status()
-#
-# audi.accelerate()
-# audi.status()
-# bmw.honk()
-# fiat.honk()
-# audi.status()
-# fiat.status()
-# # fiat.speed = 500
-# fiat.status()
-# print(fiat.speed)
-
-
-
+World().run()
