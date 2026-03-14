@@ -12,10 +12,14 @@ class Car:
         else:
             print(f"Limit prędkości {self.name} osiągnięty!")
     def brake(self):
-        if self.speed > 0:
+        if not self.alive:
+            print(f"Samochód {self.name} jest popsuty!")
+        elif self.alive and self.speed > -40:
             self.speed -= 10
+        else:
+            print(f"Limit prędkości {self.name} osiągnięty!")
     def crash(self, other_car):
-        if self.speed > 0:
+        if self.speed != 0:
             print(f"Samochód {self.name} zderza się z samochodem {other_car.name}")
             self.alive = False
             other_car.alive = False
