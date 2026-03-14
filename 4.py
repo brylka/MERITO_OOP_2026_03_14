@@ -8,6 +8,7 @@ class Car:
             print(f"Samochód {self.name} jest popsuty!")
         elif self.alive and self.speed < 120:
             self.speed += 10
+            print(f"Samochód {self.name} przyspiesza i jedzie z prędkością {self.speed}km/h")
         else:
             print(f"Limit prędkości {self.name} osiągnięty!")
     def brake(self):
@@ -39,6 +40,7 @@ class World:
         while True:
             print("1. Dodaj samochód")
             print("2. Lista samochodów")
+            print("3. Przyspiesz samochód")
             choice = int(input("Wybierz opcję: "))
             if choice == 1:
                 car_name = input("Podaj markę samochodu: ")
@@ -50,6 +52,10 @@ class World:
                 else:
                     for i, car in enumerate(self.cars):
                         print(f"{i}. {car.name}")
+            elif choice == 3:
+                car_number = int(input("Który samochód przyspieszyć (numer): "))
+                self.cars[car_number].accelerate()
+
 
 
 
