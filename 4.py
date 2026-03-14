@@ -45,7 +45,12 @@ class World:
                 car = Car(car_name)
                 self.cars.append(car)
             elif choice == 2:
-                print(self.cars)
+                if not self.cars:
+                    print("Brak samochodów w świecie!")
+                else:
+                    for i, car in enumerate(self.cars):
+                        print(f"{i}. {car.name}")
+
 
 
 
