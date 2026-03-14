@@ -34,8 +34,17 @@ class Car:
             print(f"Samochód {self.name} stoi.")
     def honk(self):
         print(f"Samochód {self.name} trąbi")
+    def __str__(self):
+        # if self.alive:
+        #     alive = 'sprawny'
+        # else:
+        #     alive = 'niesprawny'
+        alive = 'sprawny' if self.alive else 'niesprawny'
+        return f"Samochód {self.name} prędkość: {self.speed}km/h {alive}"
 
 if __name__ == '__main__':
     bmw = Car("BMW")
+    # bmw.alive = False
     bmw.accelerate()
     bmw.status()
+    print(bmw)
