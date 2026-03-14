@@ -45,7 +45,12 @@ class World:
             print("2. Lista samochodów")
             print("3. Przyspiesz samochód")
             print("4. Zahamuj samochód")
-            choice = int(input("Wybierz opcję: "))
+            print("5. Zderz samochody")
+            try:
+                choice = int(input("Wybierz opcję: "))
+            except ValueError:
+                print("Podaj liczbę!")
+                choice = 0
             if choice == 1:
                 car_name = input("Podaj markę samochodu: ")
                 car = Car(car_name)
@@ -63,9 +68,12 @@ class World:
                 self.cars_list()
                 car_number = int(input(f"Który samochód przyhamować (0-{len(self.cars)-1}): "))
                 self.cars[car_number].brake()
+            elif choice == 5:
+                self.cars_list()
+                car_number_1 = int(input(f"Króry samochód: "))
+                car_number_2 = int(input(f"Z którym samochodem: "))
+                self.cars[car_number_1].crash(self.cars[car_number_2])
 
 
-
-
-
-World().run()
+if __name__ == '__main__':
+    World().run()
