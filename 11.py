@@ -1,3 +1,6 @@
+import json
+
+
 class Student:
     def __init__(self, name, grade):
         GRADE_LIST = [2,3,3.5,4,4.5,5]
@@ -9,17 +12,31 @@ class Student:
         self.grade = float(grade)
     def update_grade(self, new_grade):
         pass
+    def to_dict(self):
+        return {"name": self.name, "grade": self.grade}
     def __str__(self):
         return f"{self.name} - ocena: {self.grade}"
 
 class Journal:
     def __init__(self):
         self.students = []
+        self.FILE = "students.json"
+
+    def save(self):
+        students = []
+        for s in self.students:
+            students.append(s.to_dict())
+        print(students)
+        with open(self.FILE, "w", encoding="utf-8") as f:
+            json.dump(students, f)
+
+
     def create(self):
         name = input("Podaj imię: ")
         grade = float(input("Ocena (2-5): "))
         try:
             self.students.append(Student(name, grade))
+            self.save()
             print("Dodano studenta")
         except ValueError as e:
             print(e)
@@ -42,10 +59,10 @@ class Journal:
             student = self.students[number - 1]
             new_grade = float(input(f"Podaj nową ocenę dla {student.name} (aktualna {student.grade}): "))
             student.grade = new_grade
+            self.save()
             print(f"Zaktualizowano ocenę studentowi {student.name} na ocenę {student.grade}")
         except ValueError:
             print("Niepoprawne dane!")
-        # dodać możliwość edycji oceny studenta
         # ewentualnie dodać możliwość zmiany imienia studenta
     def delete(self):
         self.read()
@@ -57,10 +74,10 @@ class Journal:
                 print("Zły numer!")
                 return
             self.students.pop(number - 1)
+            self.save()
             print("Usunięto studenta!")
         except ValueError:
             print("Niepoprawne dane!")
-        # dodać możliwość usuwania studenta
 
     def run(self):
         while True:
@@ -82,6 +99,7 @@ class Journal:
             elif choise == "4":
                 self.delete()
             elif choise.lower() == "x":
+                self.save()
                 print("Do zobaczenia!")
                 break
             else:
