@@ -7,6 +7,8 @@ class Student:
             raise ValueError(f"Ocena musi być jedną z: {GRADE_LIST}")
         self.name = name
         self.grade = float(grade)
+    def update_grade(self, new_grade):
+        pass
     def __str__(self):
         return f"{self.name} - ocena: {self.grade}"
 
@@ -22,7 +24,6 @@ class Journal:
         except ValueError as e:
             print(e)
     def read(self):
-        # matoda, która wyświetla listę studentów i ich oceny
         if not self.students:
             print("Lista jest pusta")
             return
@@ -30,10 +31,35 @@ class Journal:
         for i, s in enumerate(self.students):
             print(f"{i+1}. {s}")
     def update(self):
-        pass
+        self.read()
+        if not self.students:
+            return
+        try:
+            number = int(input("Podaj numer studenta do edycji: "))
+            if not 1 <= number <= len(self.students):
+                print("Zły numer!")
+                return
+            student = self.students[number - 1]
+            new_grade = float(input(f"Podaj nową ocenę dla {student.name} (aktualna {student.grade}): "))
+            student.grade = new_grade
+            print(f"Zaktualizowano ocenę studentowi {student.name} na ocenę {student.grade}")
+        except ValueError:
+            print("Niepoprawne dane!")
         # dodać możliwość edycji oceny studenta
+        # ewentualnie dodać możliwość zmiany imienia studenta
     def delete(self):
-        pass
+        self.read()
+        if not self.students:
+            return
+        try:
+            number = int(input("Podaj numer studenta do usunięcia: "))
+            if not 1 <= number <= len(self.students):
+                print("Zły numer!")
+                return
+            self.students.pop(number - 1)
+            print("Usunięto studenta!")
+        except ValueError:
+            print("Niepoprawne dane!")
         # dodać możliwość usuwania studenta
 
     def run(self):
