@@ -8,6 +8,12 @@ class World:
     def cars_list(self):
         for i, car in enumerate(self.cars):
             print(f"{i}. {car.name} prędkość: {car.speed}km/h")
+    def get_car_by_number(self, number):
+        try:
+            car = self.cars[number]
+        except IndexError:
+            car = None
+        return car
     def run(self):
         while True:
             print("1. Dodaj samochód")
@@ -32,16 +38,19 @@ class World:
             elif choice == 3:
                 self.cars_list()
                 car_number = int(input(f"Który samochód przyspieszyć (0-{len(self.cars)-1}): "))
-                self.cars[car_number].accelerate()
+                try:
+                    self.get_car_by_number(car_number).accelerate()
+                except AttributeError:
+                    print("Nie ma takiego samochodu")
             elif choice == 4:
                 self.cars_list()
                 car_number = int(input(f"Który samochód przyhamować (0-{len(self.cars)-1}): "))
-                self.cars[car_number].brake()
+                self.get_car_by_number(car_number).brake()
             elif choice == 5:
                 self.cars_list()
                 car_number_1 = int(input(f"Króry samochód: "))
                 car_number_2 = int(input(f"Z którym samochodem: "))
-                self.cars[car_number_1].crash(self.cars[car_number_2])
+                self.get_car_by_number(car_number_1).crash(self.get_car_by_number(car_number_2))
 
 
 if __name__ == '__main__':
