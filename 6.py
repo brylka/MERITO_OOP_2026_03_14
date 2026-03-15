@@ -26,5 +26,5 @@ if __name__ == '__main__':
     cat.speak()
     cat.purr()
 
-# dodać kolejną klasę, która dziedziczy czy Animal lub innej klasie
+# dodać kolejną klasę, która dziedziczy czy to po Animal lub innej klasie
 # potestować czy dziedziczą się metody z danej klasy
