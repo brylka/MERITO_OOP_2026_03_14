@@ -32,10 +32,13 @@ class Journal:
         with open(self.FILE, "w", encoding="utf-8") as f:
             json.dump([s.to_dict() for s in self.students], f)
     def load(self):
-        with open(self.FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        self.students = [Student(s["name"], s["grade"]) for s in data]
-
+        try:
+            with open(self.FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            self.students = [Student(s["name"], s["grade"]) for s in data]
+            print("Dane zostały wczytane!")
+        except FileNotFoundError:
+            print("Brak pliku")
     def create(self):
         name = input("Podaj imię: ")
         grade = float(input("Ocena (2-5): "))
