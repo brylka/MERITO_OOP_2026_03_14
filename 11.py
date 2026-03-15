@@ -23,13 +23,26 @@ class Journal:
             print(e)
     def read(self):
         # matoda, która wyświetla listę studentów i ich oceny
+        if not self.students:
+            print("Lista jest pusta")
+            return
+        print("Lista studentów:")
+        for i, s in enumerate(self.students):
+            print(f"{i+1}. {s}")
+    def update(self):
         pass
+        # dodać możliwość edycji oceny studenta
+    def delete(self):
+        pass
+        # dodać możliwość usuwania studenta
 
     def run(self):
         while True:
             print("=== DZIENNIK ===")
             print("1. Dodaj studenta")
             print("2. Lista studentów")
+            print("3. Edycja studenta")
+            print("4. Usuwanie studenta")
             print("x. Zakończenie pracy")
 
             choise = input("Opcja: ")
@@ -38,6 +51,10 @@ class Journal:
                 self.create()
             elif choise == "2":
                 self.read()
+            elif choise == "3":
+                self.update()
+            elif choise == "4":
+                self.delete()
             elif choise.lower() == "x":
                 print("Do zobaczenia!")
                 break
