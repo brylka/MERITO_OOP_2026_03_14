@@ -5,7 +5,8 @@ class Animal:
         print(f"{self.name} wydaje dźwięk...")
 
 class Dog(Animal):
-    pass
+    def speak(self):
+        print(f"{self.name} mówi: HAU HAU!")
 
 if __name__ == '__main__':
     animal = Animal("Zwierzak")
