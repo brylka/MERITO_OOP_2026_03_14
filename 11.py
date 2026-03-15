@@ -24,13 +24,9 @@ class Journal:
         self.load()
 
     def save(self):
-        # students = []
-        # for s in self.students:
-        #     students.append(s.to_dict())
-        # students = [s.to_dict() for s in self.students]
-        # print(students)
         with open(self.FILE, "w", encoding="utf-8") as f:
             json.dump([s.to_dict() for s in self.students], f)
+
     def load(self):
         try:
             with open(self.FILE, "r", encoding="utf-8") as f:
@@ -39,6 +35,7 @@ class Journal:
             print("Dane zostały wczytane!")
         except FileNotFoundError:
             print("Brak pliku")
+
     def create(self):
         name = input("Podaj imię: ")
         grade = float(input("Ocena (2-5): "))
@@ -48,6 +45,7 @@ class Journal:
             print("Dodano studenta")
         except ValueError as e:
             print(e)
+
     def read(self):
         if not self.students:
             print("Lista jest pusta")
@@ -55,6 +53,7 @@ class Journal:
         print("Lista studentów:")
         for i, s in enumerate(self.students):
             print(f"{i+1}. {s}")
+
     def update(self):
         self.read()
         if not self.students:
@@ -72,6 +71,7 @@ class Journal:
         except ValueError:
             print("Niepoprawne dane!")
         # ewentualnie dodać możliwość zmiany imienia studenta
+
     def delete(self):
         self.read()
         if not self.students:
