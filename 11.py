@@ -1,5 +1,10 @@
 class Student:
     def __init__(self, name, grade):
+        GRADE_LIST = [2,3,3.5,4,4.5,5]
+        if not name:
+            raise ValueError("Imię nie może być puste!")
+        if grade not in GRADE_LIST:
+            raise ValueError(f"Ocena musi być jedną z: {GRADE_LIST}")
         self.name = name
         self.grade = float(grade)
     def __str__(self):
@@ -11,12 +16,11 @@ class Journal:
     def create(self):
         name = input("Podaj imię: ")
         grade = float(input("Ocena (2-5): "))
-
-        self.students.append(Student(name, grade))
-        print("Dodano studenta")
-        # dodać zabezpieczenia
-        # niepuste imię
-        # ocena jest z listy [2,3,3.5,4,4.5,5]
+        try:
+            self.students.append(Student(name, grade))
+            print("Dodano studenta")
+        except ValueError as e:
+            print(e)
     def read(self):
         # matoda, która wyświetla listę studentów i ich oceny
         pass
