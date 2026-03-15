@@ -12,6 +12,11 @@ class Student:
         self.grade = float(grade)
     def update_grade(self, new_grade):
         pass
+        # dodać sprawdzanie poprawności oceny
+    def update_name(self, new_name):
+        pass
+        # dodać sprawdzanie istnienia nowego imienia
+        # użyć obu metod w dzienniku
     def to_dict(self):
         return {"name": self.name, "grade": self.grade}
     def __str__(self):
@@ -70,7 +75,7 @@ class Journal:
             print(f"Zaktualizowano ocenę studentowi {student.name} na ocenę {student.grade}")
         except ValueError:
             print("Niepoprawne dane!")
-        # ewentualnie dodać możliwość zmiany imienia studenta
+        # dodać możliwość zmiany imienia studenta
 
     def delete(self):
         self.read()
@@ -92,8 +97,9 @@ class Journal:
             print("=== DZIENNIK ===")
             print("1. Dodaj studenta")
             print("2. Lista studentów")
-            print("3. Edycja studenta")
+            print("3. Edycja oceny studenta")
             print("4. Usuwanie studenta")
+            print("5. Edycja imienia studenta")
             print("x. Zakończenie pracy")
 
             choise = input("Opcja: ")
