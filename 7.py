@@ -9,8 +9,6 @@ class Animal:
 class Dog(Animal):
     def __init__(self, name, breed):
         super().__init__(name)
-        # self.name = name
-        # self.energy = 100
         self.breed = breed
     def eat(self):
         super().eat()
